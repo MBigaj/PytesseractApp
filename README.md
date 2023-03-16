@@ -1,8 +1,14 @@
 # Pytesseract Application
 
-### Makefile
-    > make install
-    Installs all packages from requirements.txt ( mamba / conda )
+## Makefile
+<hr>
 
-    > make list
-    Creates a new requirements.txt from all dependencies available in current project ( mamba / conda )
+Installs all packages from requirements.txt ( mamba / conda )
+```
+make install
+```
+
+Creates a new requirements.txt from all dependencies available in current project ( mamba / conda )
+```
+make list
+```
