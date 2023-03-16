@@ -1,5 +1,4 @@
 import pytesseract
-from pathlib import Path
 from auxilary.constants import IMG_PATH, SAVE_LOC
 
 
