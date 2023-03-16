@@ -1,6 +1,7 @@
 from pathlib import Path
 import pytesseract
 from auxilary.constants import IMG_PATH, SAVE_LOC
+from alive_progress import alive_bar
 
 
 class ImageManager:
@@ -41,10 +42,14 @@ class ImageManager:
             pdf = pytesseract.image_to_pdf_or_hocr(f'{IMG_PATH}/{filename}', extension='pdf')
             self.save_file(pdf)
         elif option == 'a':
-            for file in IMG_PATH.iterdir():
-                print(file)
-                pdf = pytesseract.image_to_pdf_or_hocr(str(file), extension='pdf')
-                self.save_file(pdf)
+            all_files_count = len(list(IMG_PATH.iterdir()))
+
+            with alive_bar(all_files_count, precision=1) as bar:
+                for file in IMG_PATH.iterdir():
+                    print(file)
+                    pdf = pytesseract.image_to_pdf_or_hocr(str(file), extension='pdf')
+                    self.save_file(pdf)
+                    bar()
         else:
             raise UnboundLocalError()
 
