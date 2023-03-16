@@ -1,3 +1,4 @@
+from pathlib import Path
 import pytesseract
 from auxilary.constants import IMG_PATH, SAVE_LOC
 
@@ -5,7 +6,10 @@ from auxilary.constants import IMG_PATH, SAVE_LOC
 class ImageManager:
     # Class for managing images
     def __init__(self) -> None:
-        pass
+        if not IMG_PATH.is_dir():
+            Path.mkdir(IMG_PATH)
+        if not SAVE_LOC.is_dir():
+            Path.mkdir(SAVE_LOC)
 
     def get_bounding_boxes(self, filename: str) -> list[list]:
         result = pytesseract.image_to_boxes(f'{IMG_PATH}/{filename}')
